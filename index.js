@@ -1,61 +1,20 @@
-const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
 
-async function requestFunc(method, path, name, data){
-	const dataRequest = JSON.stringify({ method, path, name, data });
+const dfFuncs = require('./functions/df');
+const jsonFuncs = require('./functions/json');
 
-	const config = {
-		method: 'POST',
-		url: 'http://localhost:7202/api/fs/df',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		data : dataRequest
-	};
-
-	const response = await axios(config);
-	return response.data;
+exports.connect = (port) => {
+    fs.writeFileSync(path.join(__dirname, './config/config.txt'), port);
 }
 
-exports.readJson = function(path, name){
-	let method = 'readJson';
-	let answer = requestFunc(method, path, name);
-	return(answer);
+exports.df = async(method, path, name, data) => {
+    let answer = await dfFuncs(method, path, name, data);
+    return answer;
 }
 
-exports.readFile = function(path, name){
-	let method = 'readFile';
-	let answer = requestFunc(method, path, name);
-	return(answer);
+exports.json = async(method, path, name, data) => {
+    let answer = await jsonFuncs(method, path, name, data);
+    return answer;
 }
-
-exports.removeFile = function(path, name){
-	let method = 'removeFile';
-	let answer = requestFunc(method, path, name);
-	return(answer);
-}
-
-exports.createFile = function(path, name){
-	let method = 'createFile';
-	let answer = requestFunc(method, path, name);
-	return(answer);
-}
-
-exports.createDir = async function(path, name){
-	let method = 'createDir';
-	let answer = await requestFunc(method, path, name);
-	return(answer);
-}
-
-exports.removeDir = function(path, name){
-	let method = 'removeDir';
-	let answer = requestFunc(method, path, name);
-	return(answer);
-}
-
-exports.writeFile = function(path, name, data){
-	let method = 'writeFile';
-	let answer = requestFunc(method, path, name, data);
-	return(answer);
-}
-
 

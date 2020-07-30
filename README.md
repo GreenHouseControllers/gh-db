@@ -1,53 +1,126 @@
-This module helps you to work with GH_DB.
+# ghc-db
 
-##### install
-	npm install gh-db --save
-##### or
-	npm install gh-db 
+This module helps you to work with GH_DB. https://github.com/GreenHouseControllers/GH-database
 
-const db = require('gh-db');
+#### install
+    npm install ghc-db --save
+#### or
+    npm install ghc-db 
 
-##### Methods:
-1. readFile - read file and return its contents.
-2. createFile - create file and return message or error.
-3. removeFile - remove file and return message or error.
-4. readJson - read and parse json file and return its contents.
-5. createDir - create folder and return message or error.
-6. removeDir - remove folder and return message or error.
-7. writeFile - write data to file and return message or error. 
+#### add module to project
+    const db = require('ghc-db');
+    
+#### connect with db:
+Here you have to give port to module that you use for db.
 
-###### all methods except writeFile:
-    let answer = await db.method(path, name);
+    db.connect(port);   
 
-###### writeFile:
-    let answer = await db.method(path, name, data);
+default port is 7202.
 
-you have to use async callback in the route
+You can change it in db  ./config/config.json
 
-path - 'a/b/c' - path to the directory which you need
-name - 'file-name' - name of file which you want to write
-data - 'Hallo World' - text or variable that you want to write
+#### functions and callbacks
+All requests mast be inside async function or callback. 
 
-##### exemple of code
-	app.get('/', async (req, res) => {
-		let answer = await db.createDir('', 'exemple');
-		res.status(200).send(answer);
-	});
+### Usage
+#### dirFile methods:
+1. readFile 
+read file and return its contents.
 
-All methods except readFile, return you messages like 'directory has been created'
-and readFile return content of file	
+        let answer = await db.df('readFile', path, name);
+        
+2. createFile
+create file and return message or error.
 
-if you got message like 'Can not read file' and error, look for errors of the fs.
+        let answer = await db.df('createFile', path, name);
 
-##### exemple of err:
+3. removeFile 
+remove file and return message or error.
+
+        let answer = await db.df('removeFile', path, name);
+
+4. createDir 
+create folder and return message or error.
+
+        let answer = await db.df('createDir', path, name);
+
+5. removeDir 
+remove folder and return message or error.
+
+        let answer = await db.df('removeDir', path, name);
+
+6. writeFile 
+write data to file and return message or error. 
+
+        let answer = await db.df('writeFile', path, name);
+        
+#### json methods
+
+1. readJson
+read json file and return its contents.
+
+        let answer = await db.json('readJson', path, name);
+
+2. writeJson
+write object, or array to json file and return message or error. 
+
+        let answer = await db.json('writeJson', path, name);
+
+        
+3. getElement
+return element from array in json file.
+
+        let answer = await db.json('getElement', path, name, data);
+        
+(here data is name or number of the element)
+
+4. pushElement
+push element to the end of array in json file
+
+        let answer = await db.json('pushElement', path, name, data);
+
+5. deleteElement
+delete element in the array;
+    
+        let answer = await db.json('deleteElement', path, name, data);
+
+#### exemple of return message:
+    file has been wrote
+    
+#### exemple of return error:
     {
-        "message": "Can not create directory",
+        "message": "Can not read file",
         "err": {
-            "errno": -17,
-            "code": "EEXIST",
-            "syscall": "mkdir",
-            "path": "/home/glab/Рабочий стол/Glab/jarvis/DB/1.0/DB/db/file_sistem/exemple"
+            "errno": -2,
+            "code": "ENOENT",
+            "syscall": "open",
+            "path": "/home/DB/file_sistem/exemple/exemple.txt"
         }
-    }
+}
 
+To find info about errors, look at the file sistem documentation
 
+### exemple of code
+
+    const db = require('./index'); //add ghc-db
+    const express = require('express');
+    
+    const app = express();
+    const PORT = 3000;
+    
+    //connect with db
+    db.connect(7202);
+    
+    app.get('/', async function(req, res) {
+        try {
+            //request to db
+            let answer = await db.json('readJson', '/exemple', 'exemple.json',);
+            res.status(200).send(answer);
+        }catch(err){
+            res.status(400).send(err);
+        }
+    })
+    
+    app.listen(PORT, function() {
+        console.log(`DB started on port ${PORT}`);
+    });

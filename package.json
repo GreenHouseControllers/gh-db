@@ -1,7 +1,7 @@
 {
-  "name": "gh_db",
-  "version": "1.0.0",
-  "description": "",
+  "name": "ghc-db",
+  "version": "1.1.0",
+  "description": "This module helps you to work with GH_DB",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -13,6 +13,16 @@
   "author": "Strizhkov Glab",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.19.2"
-  }
+    "axios": "^0.19.2",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "keywords": [
+    "node",
+    "dh-db",
+    "ghc-db",
+    "db",
+    "GHC"
+  ]
 }
+
