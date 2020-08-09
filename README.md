@@ -80,9 +80,42 @@ push element to the end of array in json file
         let answer = await db.json('pushElement', path, name, data);
 
 5. deleteElement
-delete element in the array;
+delete element in the array.
     
         let answer = await db.json('deleteElement', path, name, data);
+
+#### crud methods
+
+1. create
+add new element to the collection.
+
+        let data = {
+                name: "jack",
+                age: "16"
+            }
+
+        let answer = await  db.crud('create', 'myCollection', '', data);
+        
+2. read 
+read collection.
+
+        let answer = await db.crud('read', 'newCollection');
+
+3. update
+change one element to other
+
+        let newData = {
+                name: "jony",
+                age: "20"
+            }
+
+        let answer = await  db.crud('create', 'myCollection', 'name', 'jack', newData);
+
+4. delete
+delete one element in the collection
+
+        let answer = await  db.crud('create', 'myCollection', 'name', 'jack');
+
 
 #### exemple of return message:
     file has been wrote
@@ -102,7 +135,7 @@ To find info about errors, look at the file sistem documentation
 
 ### exemple of code
 
-    const db = require('./index'); //add ghc-db
+    const db = require('ghc-db'); //add ghc-db
     const express = require('express');
     
     const app = express();
@@ -110,11 +143,31 @@ To find info about errors, look at the file sistem documentation
     
     //connect with db
     db.connect(7202);
-    
-    app.get('/', async function(req, res) {
+    // work with file
+    app.get('/json', async function(req, res) {
         try {
             //request to db
-            let answer = await db.json('readJson', '/exemple', 'exemple.json',);
+            let answer = await db.df('createFile', '/exemple', 'exemple.json');
+            res.status(200).send(answer);
+        }catch(err){
+            res.status(400).send(err);
+        }
+    })
+    // work with json
+    app.get('/json', async function(req, res) {
+        try {
+            //request to db
+            let answer = await db.json('readJson', '/exemple', 'exemple.json');
+            res.status(200).send(answer);
+        }catch(err){
+            res.status(400).send(err);
+        }
+    })
+    // work with crud
+    app.get('/crud', async function(req, res){
+        try {
+            //request to db
+            let answer = await  db.crud('create', 'myCollection', 'name', 'jack');
             res.status(200).send(answer);
         }catch(err){
             res.status(400).send(err);

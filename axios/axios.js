@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const requestFunc = async (url, dataRequest) => {
-    let data = JSON.parse(dataRequest);
+    let data = JSON.parse (dataRequest);
     const config = {
         method: 'POST',
         url: url,
