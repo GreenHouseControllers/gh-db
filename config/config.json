@@ -1,0 +1,20 @@
+[
+    {
+        "protocol": "http://"
+    },
+    {
+        "host": "localhost:"
+    },
+    {
+        "dirFileUrl": "/api/fs/df"
+    },
+    {
+        "jsonUrl": "/api/fs/json"
+    },
+    {
+        "collectionUrl": "/api/collection"
+    },
+    {
+        "port": 7202
+    }
+]

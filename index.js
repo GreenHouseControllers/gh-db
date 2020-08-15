@@ -1,27 +1,97 @@
-const fs = require('fs');
-const path = require('path');
+//add modules
+const config = require('./system_functions/config');
+const dataBuilder = require('./functions/dataBuilder');
+const conf = require('gh-config');
 
-const dfFuncs = require('./functions/df');
-const jsonFuncs = require('./functions/json');
-const crud = require('./functions/crud');
+conf.connect(__dirname, './config/config.json');
 
-
+//methods
+//connection
 exports.connect = (port) => {
-    fs.writeFileSync(path.join(__dirname, './config/config.txt'), port);
+    config.connect(port);
+}
+//----------------------------------------------------------------------
+//df
+//dir
+exports.createDir = async (data) => {
+    return await dataBuilder('df', data, 'createDir');
 }
 
-exports.df = async(method, path, name, data) => {
-    let answer = await dfFuncs(method, path, name, data);
-    return answer;
+exports.removeDir = async (data) => {
+    return await dataBuilder('df', data, 'removeDir');
+}
+//----------------------------------------------------------------------
+//file
+exports.createFile = async (data) => {
+    return await dataBuilder('df', data, 'createFile');
 }
 
-exports.json = async(method, path, name, data) => {
-    let answer = await jsonFuncs(method, path, name, data);
-    return answer;
-}
-exports.crud = async(method, name, key, data, newData) => {
-    let answer = await crud(method, name, key, data, newData);
-    return answer;
+exports.removeFile = async (data) => {
+    return await dataBuilder('df', data, 'removeFile');
 }
 
+exports.readFile = async (data) => {
+    return await dataBuilder('df', data, 'readFile');
+}
 
+exports.writeFile = async (data) => {
+    return await dataBuilder('df', data, 'writeFile');
+}
+//---------------------------------------------------------------------
+//json
+exports.readJson = async (data) => {
+    return await dataBuilder('json', data, 'readJson');
+}
+
+exports.writeJson = async (data) => {
+    return await dataBuilder('json', data, 'writeJson');
+}
+
+exports.getElement = async (data) => {
+    return await dataBuilder('json', data, 'getElement');
+}
+
+exports.pushElement = async (data) => {
+    return await dataBuilder('json', data, 'pushElement');
+}
+
+exports.deleteElement = async (data) => {
+    return await dataBuilder('json', data, 'deleteElement');
+}
+
+//------------------------------------------------------------------------------
+//collection
+//crud
+exports.create = async (data) => {
+    return await dataBuilder('collection', data, 'create');
+}
+
+exports.read = async (data) => {
+    return await dataBuilder('collection', data, 'read');
+}
+
+exports.update = async (data) => {
+    return await dataBuilder('collection', data, 'update');
+}
+
+exports.delete = async (data) => {
+    return await dataBuilder('collection', data, 'delete');
+}
+
+//-----------------------------------------------------------------------------
+//collection main
+
+exports.createCollection = async (data) => {
+    return await dataBuilder('collection', data, 'createCollection');
+}
+
+exports.removeCollection = async (data) => {
+    return await dataBuilder('collection', data, 'removeCollection');
+}
+
+//--------------------------------------------------------------------------------
+//more collection methods
+
+exports.get = async (data) => {
+    return await dataBuilder('collection', data, 'get');
+}

@@ -1,6 +1,6 @@
 {
   "name": "ghc-db",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "This module helps you to work with GH_DB",
   "main": "index.js",
   "scripts": {
@@ -14,8 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",
-    "fs": "0.0.1-security",
-    "path": "^0.12.7"
+    "gh-config": "^1.0.1"
   },
   "keywords": [
     "node",
@@ -25,4 +24,3 @@
     "GHC"
   ]
 }
-

@@ -1,7 +1,6 @@
 const axios = require('axios');
 
-const requestFunc = async (url, dataRequest) => {
-    let data = JSON.parse (dataRequest);
+const requestFunc = async(url, data) => {
     const config = {
         method: 'POST',
         url: url,
@@ -13,5 +12,5 @@ const requestFunc = async (url, dataRequest) => {
     const response = await axios(config);
     return response.data;
 }
-
+//exports
 module.exports = requestFunc;
