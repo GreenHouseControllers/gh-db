@@ -1,6 +1,6 @@
 {
   "name": "ghc-db",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "This module helps you to work with GH_DB",
   "main": "index.js",
   "scripts": {
