@@ -1,11 +1,5 @@
 [
     {
-        "protocol": "http://"
-    },
-    {
-        "host": "localhost:"
-    },
-    {
         "dirFileUrl": "/api/fs/df"
     },
     {
@@ -15,6 +9,6 @@
         "collectionUrl": "/api/collection"
     },
     {
-        "port": 7202
+        "url": "http://localhost:7202"
     }
 ]

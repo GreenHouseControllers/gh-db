@@ -1,6 +1,6 @@
 {
   "name": "ghc-db",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "This module helps you to work with GH_DB",
   "main": "index.js",
   "scripts": {
@@ -10,17 +10,22 @@
     "type": "git",
     "url": "https://github.com/GreenHouseControllers/gh-db.git"
   },
+  "keywords": [
+    "db",
+    "database",
+    "ghc-db",
+    "gh-db",
+    "Back-end",
+    "npm"
+  ],
   "author": "Strizhkov Glab",
   "license": "MIT",
-  "dependencies": {
-    "axios": "^0.19.2",
-    "gh-config": "^1.0.1"
+  "bugs": {
+    "url": "https://github.com/GreenHouseControllers/gh-db/issues"
   },
-  "keywords": [
-    "node",
-    "dh-db",
-    "ghc-db",
-    "db",
-    "GHC"
-  ]
+  "homepage": "https://github.com/GreenHouseControllers/gh-db#readme",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "gh-config": "^1.0.1"
+  }
 }

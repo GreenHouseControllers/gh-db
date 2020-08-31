@@ -7,8 +7,8 @@ conf.connect(__dirname, './config/config.json');
 
 //methods
 //connection
-exports.connect = (port) => {
-    config.connect(port);
+exports.connect = (url, token) => {
+    config.connect(url, token);
 }
 //----------------------------------------------------------------------
 //df

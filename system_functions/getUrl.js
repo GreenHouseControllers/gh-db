@@ -3,11 +3,9 @@ const conf = require('gh-config');
 
 function joinUrl(url){
 // get parts from config
-    let protocol = conf.get('protocol');
-    let host = conf.get('host');
-    let port = conf.get('port');
+    let hostUrl = conf.get('url')
 // join url
-    let fullUrl = protocol + host + port + url;
+    let fullUrl = hostUrl + url;
     return fullUrl;
 
 }

@@ -13,13 +13,26 @@ Add this string everywhere where you want to use db methods.
     const db = require('ghc-db');
     
 ### connect with db:
-Here you have to give port to module that you use for db.
 Do it only once in te main file of the project.
-    db.connect(port);   
 
-default port is 7202.
+    db.connect(url, token);   
+    
+**exemple**
 
-You can change it in db  ./config/config.json
+    db.connect('http://localhost:7202', 't111');
+    
+default url is "http://localhost:7202"
+
+default token is "t111"
+
+You can change port and token in db  ./config/config.json
+
+**exemple of config file**
+    
+    {
+        "port": 7202,
+        "dbToken": "t111"
+    }
 
 ### functions and callbacks
 All requests mast be inside async function or callback. 
@@ -195,12 +208,12 @@ delete one element in the collection
 
 1. get - get one element from the collection (if you have collection with the same objects that you fined db will return just the first)
 
-        const data = {
-            "name": "newCollection",
-            "key": "name",
-            "data": "jack"
-        }
-        let answer = await db.get(data);
+    const data = {
+        "name": "newCollection",
+        "key": "name",
+        "data": "jack"
+    }
+    let answer = await db.get(data);
 
 ### exemple of return message:
     file has been wrote
