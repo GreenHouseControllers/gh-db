@@ -9,8 +9,12 @@ const requestFunc = async(url, data) => {
         },
         data : data
     };
-    const response = await axios(config);
-    return response.data;
+    try {
+        const response = await axios(config);
+        return response.data;
+    } catch (err) {
+        return err.response.data;
+    }
 }
 //exports
 module.exports = requestFunc;

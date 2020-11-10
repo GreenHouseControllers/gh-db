@@ -13,5 +13,5 @@ exports.connect = async(url, token) => {
         token: token
     }
     let requestUrl = url + '/connect/app';
-    console.log(await axios(requestUrl, requestObj));
+    return await axios(requestUrl, requestObj);
 }

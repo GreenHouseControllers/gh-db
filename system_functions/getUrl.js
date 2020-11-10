@@ -18,15 +18,17 @@ function getConfUrl(key){
 
 const getUrl = (type) => {
 // choice type of operation
-    if(type == 'df'){
-        return getConfUrl('dirFileUrl');
-    }
-    if(type == 'json'){
-        return getConfUrl('jsonUrl');
-    }
-    if(type == 'collection'){
-        return getConfUrl('collectionUrl');
-    }
+    if(type == 'df') return getConfUrl('dirFileUrl')
+    else if(type == 'json') return getConfUrl('jsonUrl')
+    else if(type == 'collection') return getConfUrl('collectionUrl')
+    else if(type == 'fsState') return getConfUrl('fsStateUrl')
+    else if(type == 'storageMethods') return getConfUrl('storageMethodsUrl')
+    else if(type == 'storageDownload') return getConfUrl('storageDownloadUrl')
+    else if(type == 'storageUpload') return getConfUrl('storageUploadUrl')
+    else if(type == 'register') return getConfUrl('registerUrl')
+    else if(type == 'login') return getConfUrl('loginUrl');
+    else if(type == 'getErrorLog') return getConfUrl('getErrLogUrl');
+
 }
 //exports
 module.exports = getUrl;

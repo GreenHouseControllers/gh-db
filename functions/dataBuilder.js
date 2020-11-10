@@ -6,14 +6,16 @@ const dataBuilder = async (type, data, method) => {
     let url = getUrl(type);
 
     let fullData = {};
-    fullData["method"] = method;
-    fullData["path"] = data.path || undefined;
-    fullData["name"] = data.name || undefined;
-    fullData["data"] = data.data || undefined;
-    fullData["newData"] = data.newData || undefined;
-    fullData["key"] = data.key || undefined;
-    fullData["fileName"] = data.fileName || undefined;
-
+    if(data) {
+        fullData["method"] = method || undefined;
+        fullData["path"] = data.path || undefined;
+        fullData["name"] = data.name || undefined;
+        fullData["data"] = data.data || undefined;
+        fullData["newData"] = data.newData || undefined;
+        fullData["key"] = data.key || undefined;
+        fullData["fileName"] = data.fileName || undefined;
+        fullData["newName"] = data.newName || undefined;
+    }
 
     return await axios(url, fullData);
 }

@@ -1,14 +1,18 @@
 //add modules
 const config = require('./system_functions/config');
 const dataBuilder = require('./functions/dataBuilder');
+const uploadDataBuilder = require('./functions/uploadDataBuilder');
+
 const conf = require('gh-config');
+
+const uploader = require('./axios/uploader')
 
 conf.connect(__dirname, './config/config.json');
 
 //methods
 //connection
-exports.connect = (url, token) => {
-    config.connect(url, token);
+exports.connect = async(url, token) => {
+    return await config.connect(url, token);
 }
 //----------------------------------------------------------------------
 //df
@@ -36,6 +40,14 @@ exports.readFile = async (data) => {
 
 exports.writeFile = async (data) => {
     return await dataBuilder('df', data, 'writeFile');
+}
+//---------------------------------------------------------------------
+//more
+exports.getDirContent = async (data) => {
+    return await dataBuilder('fsState', data, 'getDirContent');
+}
+exports.rename = async (data) => {
+    return await dataBuilder('df', data, 'rename');
 }
 //---------------------------------------------------------------------
 //json
@@ -95,3 +107,44 @@ exports.removeCollection = async (data) => {
 exports.get = async (data) => {
     return await dataBuilder('collection', data, 'get');
 }
+
+exports.renameCollection = async (data) => {
+    return await dataBuilder('collection', data, 'renameCollection');
+}
+
+//--------------------------------------------------------------------------------
+// Storage
+
+exports.upload = async (data) => {
+    return await uploadDataBuilder('storageUpload', data);
+}
+
+exports.download = async (data) => {
+    return await dataBuilder('storageDownload', data);
+}
+
+exports.remove = async (data) => {
+    return await dataBuilder('storageMethods', data, 'remove');
+}
+
+//--------------------------------------------------------------------------------
+//auth
+
+exports.register = async (data) => {
+    return await dataBuilder('register', data);
+}
+
+exports.login = async (data) => {
+    return await dataBuilder('login', data);
+}
+
+//--------------------------------------------------------------------------------
+// admin methods
+
+exports.getErrorLog = async () => {
+    return await dataBuilder('getErrorLog');
+}
+
+
+
+

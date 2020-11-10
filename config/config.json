@@ -9,6 +9,27 @@
         "collectionUrl": "/api/collection"
     },
     {
+        "fsStateUrl": "/api/fs/fsState"
+    },
+    {
+        "storageDownloadUrl": "/api/storage/download"
+    },
+    {
+        "storageMethodsUrl": "/api/storage/methods"
+    },
+    {
+        "storageUploadUrl": "/api/storage/upload"
+    },
+    {
+        "registerUrl": "/admin/register"
+    },
+    {
+        "loginUrl": "/admin/login"
+    },
+    {
+        "getErrLogUrl": "/admin/getErrorLog"
+    },
+    {
         "url": "http://localhost:7202"
     }
 ]

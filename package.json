@@ -1,6 +1,6 @@
 {
   "name": "ghc-db",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "This module helps you to work with GH_DB",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,18 @@
     "ghc-db",
     "gh-db",
     "Back-end",
-    "npm"
+    "npm",
+    "module",
+    "gh",
+    "ghc",
+    "greenHouse",
+    "greenHouseControllers",
+    "auth",
+    "storage",
+    "collection",
+    "user",
+    "dbRequest",
+    "axios"
   ],
   "author": "Strizhkov Glab",
   "license": "MIT",
